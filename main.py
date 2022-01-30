@@ -4,18 +4,19 @@ import pywhatkit
 import datetime
 
 import wikipedia
-
+# Initializing the listener
 listener = sr.Recognizer()
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 
-
+# Talk function for Jarvis to talk back
 def talk(text):
     engine.say(text)
     engine.runAndWait()
 
 
+# Taking the commamds from the user by listening
 def takecommand():
     try:
         with sr.Microphone() as source:
@@ -30,7 +31,7 @@ def takecommand():
         pass
     return command
 
-
+# Running the following input
 def run_jarvis():
     command = takecommand()
     if 'play' in command:
@@ -49,6 +50,6 @@ def run_jarvis():
     else:
         talk('Please say it again ?')
 
-
+# Running the while loop if the user not speaking then end the loop
 while True:
     run_jarvis()
